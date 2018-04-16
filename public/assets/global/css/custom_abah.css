@@ -1,0 +1,18 @@
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: DroidNaskh !important;
+}
+.user-login-5 .login-container > .login-content > h1 {
+    font-family: DroidKufi !important;
+}
+
+.user-login-5 .login-container > .login-content > .login-form .form-control {
+    padding: 0px 0;
+}
+
+.user-login-5 .login-container > .login-footer {
+    padding-top: 10px;
+    color: gray;
+}
+.user-login-5 .login-container > .login-content > .login-form .form-control {
+    font-family: "Open Sans";
+}
