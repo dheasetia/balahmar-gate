@@ -24,6 +24,18 @@
             @if(count(Sentinel::getUser()->office) == 0)
                 <div class="alert alert-info">لم تكن لديك جهة مسجلة، الرجاء تعبئة هذا النموذج لتسجيل الجهة المستفيدة الخاصة بك. الحقول المشار إليها بالنجم الأحمر مطلوب تعبئته.</div>
             @endif
+            @if(count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        <h4>توجد أخطاز!! الرجاء تصحيح الأخطاء التالية: </h4>
+                        @foreach($errors->all() as $error)
+                            <li>
+                                {{$error}}
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <!-- BEGIN FORM-->
             <form action="/office" method="post" class="form-horizontal form-bordered form-row-stripped" id="form_create_office" accept-charset="utf-8" enctype="multipart/form-data">
                 {{csrf_field()}}
@@ -94,7 +106,7 @@
                     </div>
 
                     <div class="form-group {{$errors->has('license_file') ? 'has-error' : ''}}">
-                        <label class="control-label col-md-3"> صورة الترخيص</label>
+                        <label class="control-label col-md-3"> صورة الترخيص<span class="required">*</span></label>
                         <div class="col-md-3">
                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                 <div class="input-group input-large">
@@ -109,7 +121,7 @@
                                     <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> إزالة </a>
                                 </div>
                             </div>
-                            <span class="help-block">بصيغة pdf بالحجم لا يزيد عن ٢ ميغا.</span>
+                            <span class="help-block">يلزم أن يكون الملف بصيغة pdf وبحجم أقل من ٢ ميغا</span>
                             @if($errors->has('license_file'))
                                 <div class="help-block help-block-error">{{$errors->first('license_file')}}</div>
                             @endif
@@ -187,7 +199,7 @@
                     </div>
 
                     <div class="form-group {{$errors->has('bank_file') ? 'has-error' : ''}}">
-                        <label class="control-label col-md-3"> صورة شهادة الحساب البنكي رقم الآيبان <span class="required">*</span></label>
+                        <label class="control-label col-md-3"> صورة شهادة الحساب البنكي <span class="required">*</span></label>
                         <div class="col-md-3">
                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                 <div class="input-group input-large">
@@ -202,7 +214,7 @@
                                     <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> إزالة </a>
                                 </div>
                             </div>
-                            <span class="help-block">بصيغة pdf بالحجم لا يزيد عن ٢ ميغا.</span>
+                            <span class="help-block">يلزم أن يكون الملف بصيغة pdf وبحجم أقل من ٢ ميغا</span>
                             @if($errors->has('bank_file'))
                                 <div class="help-block help-block-error">{{$errors->first('bank_file')}}</div>
                             @endif
@@ -230,7 +242,7 @@
                     </div>
 
                     <div class="form-group {{$errors->has('fax') ? 'has-error' : ''}}">
-                        <label for="fax" class="control-label col-md-3">الفاكس</label>
+                        <label for="fax" class="control-label col-md-3">الفاكس <span class="required">*</span></label>
                         <div class="col-md-9">
                             <input type="text" name="fax" class="form-control" id="fax" value="{{old('fax')}}"/>
                             @if($errors->has('fax'))
@@ -320,7 +332,7 @@
                     </div>
 
                     <div class="form-group {{$errors->has('zip_code') ? 'has-error' : ''}}">
-                        <label for="zip_code" class="control-label col-md-3">الرمز البريدي  (بريد واصل)</label>
+                        <label for="zip_code" class="control-label col-md-3">الرمز البريدي  (بريد واصل) <span class="required">*</span></label>
                         <div class="col-md-9">
                             <input type="text" name="zip_code" class="form-control" id="zip_code" value="{{old('zip_code')}}"/>
                             @if($errors->has('zip_code'))
@@ -352,8 +364,15 @@
                                     <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> حذف </a>
                                 </div>
                             </div>
+                            <div class="error_file_input clearfix margin-top-20"></div>
+                            @if($errors->has('logo'))
+                                <div class="clearfix margin-top-20">
+                                    <div class="help-block help-block-error">{{$errors->first('logo')}}</div>
+                                </div>
+                            @endif
                             <div class="clearfix margin-top-20">
-                                <span class="label label-success" style="font-family: DroidKufi; font-size: medium">تنبيه !</span> الرجاء اختيار الصورة بالمحاذاة المناسب وبحجم الملف لا يزيد عن ٢ ميغا. </div>
+                                <span class="label label-success" style="font-family: DroidKufi; font-size: medium">تنبيه !</span> الرجاء اختيار الصورة بالمحاذاة المناسب وبحجم الملف لا يزيد عن ٢ ميغا.
+                            </div>
                         </div>
                     </div>
 
@@ -387,6 +406,7 @@
     <script src="{{ asset('assets/global/plugins/bootbox/bootbox_abah_modified.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/global/plugins/jquery-validation/js/jquery.validate.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/global/plugins/jquery-validation/js/additional-methods.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/jquery-validation/js/jquery.validate.file.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('assets/global/plugins/select2/js/select2.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js')}}" type="text/javascript"></script>

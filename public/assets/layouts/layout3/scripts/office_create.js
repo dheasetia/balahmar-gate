@@ -3,6 +3,18 @@ var OfficeCreate = function() {
         return this.optional(element) || /SA\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d\d/.test(value);
     }, 'رقم الأيبان غير صحيح.');
 
+    jQuery.validator.addMethod("hijri", function(value, element) {
+        return this.optional( element ) || /(0[1-9]|[1-2][0-9]|30)\/\s(0[1-9]|1[0-2])\/\s(13[3-9][0-9]|14[0-4][0-9])$/.test( value );
+    }, 'تاريخ الهجري غير صحيح');
+
+    jQuery.validator.addMethod("abah_date", function(value, element) {
+        return this.optional( element ) || /(0[1-9]|[1-2][0-9]|30|31)\/\s(0[1-9]|1[0-2])\/\s((19[6-9]|20[0-3])[0-9])$/.test( value );
+    }, 'تاريخ الميلادي غير صحيح');
+
+    jQuery.validator.addMethod("saudimobile", function(value, element) {
+        return this.optional( element ) || /^05\d\d\d\d\d\d\d\d/.test( value );
+    }, 'رقم الجوال غير صحيح');
+
 
     var handleValidation = function() {
         var form1 = $('#form_create_office');
@@ -34,14 +46,25 @@ var OfficeCreate = function() {
                     number: true
                 },
                 license_date: {
-                    required: true
+                    required: true,
+                    hijri: true
                 },
                 license_file: {
-                    required: true
+                    required: true,
+                    accept: 'application/pdf',
+                    maxFileSize: {
+                        "unit": "KB",
+                        "size": 2000
+                    }
+
                 },
                 bank_file: {
-                    required: true
-
+                    required: true,
+                    accept: 'application/pdf',
+                    maxFileSize: {
+                        "unit": "KB",
+                        "size": 2000
+                    }
                 },
                 representative: {
                     required: true,
@@ -52,9 +75,7 @@ var OfficeCreate = function() {
                 },
                 mobile: {
                     required: true,
-                    number: true,
-                    minlength: 10,
-                    maxlength: 10
+                    saudimobile: true
                 },
                 email: {
                     required: true,
@@ -66,9 +87,7 @@ var OfficeCreate = function() {
                 },
                 iban: {
                     required: true,
-                    saudi_iban: true,
-                    minlength: 24,
-                    maxlength: 24
+                    saudi_iban: true
                 },
                 phone: {
                     number: true,
@@ -78,6 +97,7 @@ var OfficeCreate = function() {
                     number: true
                 },
                 fax: {
+                    required: true,
                     number: true
                 },
                 area_id: {
@@ -105,11 +125,11 @@ var OfficeCreate = function() {
             messages: {
                 name: {
                     required: 'مطلوب',
-                    minlength: 'الاسم أقل من ٦ أحرف'
+                    minlength: 'الاسم يلزم أن يكون أكثر من ٦ أحرف'
                 },
                 description: {
                     required: 'مطلوب',
-                    minlength: 'التعريف أقل من ٦ أحرف'
+                    minlength: 'التعريف يلزم أن يكون أكثر من ٦ أحرف'
                 },
                 advisor_id: {
                     required: 'مطلوب',
@@ -117,39 +137,42 @@ var OfficeCreate = function() {
                 },
                 manager_name: {
                     required: 'مطلوب',
-                    minlength: 'الاسم أقل من ٦ أحرف'
+                    minlength: 'الاسم يلزم أن يكون أكثر من ٦ أحرف'
                 },
                 license_no: {
                     required: 'مطلوب',
                     number: 'الرقم غير صحيح'
                 },
                 license_date: {
-                    required: 'مطلوب'
+                    required: 'مطلوب',
+                    hijri: 'تاريخ الترخيص خطأ'
                 },
                 license_file: {
-                    required: 'مطلوب'
+                    required: 'مطلوب',
+                    accept: 'صيغة الملف غير صحيح',
+                    maxFileSize: 'حجم الملف يلزم أن يكون أقل من ٢ ميغا'
 
                 },
                 bank_file: {
-                    required: 'مطلوب'
+                    required: 'مطلوب',
+                    accept: 'صيغة الملف غير صحيح',
+                    maxFileSize: 'حجم الملف يلزم أن يكون أقل من ٢ ميغا'
 
                 },
                 representative: {
                     required: 'مطلوب',
-                    minlength: 'الاسم أقل من ٦ أحرف'
+                    minlength: 'الاسم يلزم أن يكون أكثر من ٦ أحرف'
                 },
                 role: {
                     required: 'صفة ممثل الجهة مطلوب'
                 },
                 mobile: {
                     required: 'مطلوب',
-                    number: 'الرقم غير صحيح',
-                    minlength: 'الرقم غير صحيح',
-                    maxlength: 'الرقم غير صحيح'
+                    saudimobile: 'رقم الجوال غير صحيح'
                 },
                 email: {
                     required: 'مطلوب',
-                    email: 'العنوان غير صحيح'
+                    email: 'البريد الإلكتروني غير صحيح'
                 },
                 bank_id: {
                     required: 'مطلوب',
@@ -157,8 +180,7 @@ var OfficeCreate = function() {
                 },
                 iban: {
                     required: 'مطلوب',
-                    minlength: 'رقم الإيبان غير صحيح',
-                    maxlength: 'رقم الإيبان غير صحيح'
+                    saudi_iban: 'الرقم غير صحيح'
                 },
                 phone: {
                     number: 'الرقم غير صحيح',
@@ -169,6 +191,7 @@ var OfficeCreate = function() {
                     number: 'الرقم غير صحيح'
                 },
                 fax: {
+                    required: 'مطلوب',
                     number: 'الرقم غير صحيح'
                 },
                 area_id: {
@@ -199,6 +222,8 @@ var OfficeCreate = function() {
                     error.insertAfter(element.closest(".md-checkbox-list, .md-checkbox-inline, .checkbox-list, .checkbox-inline"));
                 } else if (element.is(':radio')) {
                     error.insertAfter(element.closest(".md-radio-list, .md-radio-inline, .radio-list,.radio-inline"));
+                }  else if (element.is(':file')) {
+                    error.append(".error_file_input");
                 } else {
                     error.insertAfter(element); // for other inputs, just perform default behavior
                 }

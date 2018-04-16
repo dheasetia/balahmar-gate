@@ -26,24 +26,26 @@ class OfficePostRequest extends FormRequest
     {
         return [
             'name'              => 'required|min:6|unique:offices',
+            'description'       => 'required',
             'advisor_id'        => 'required|numeric',
             'manager_name'      => 'required|min:6',
             'license_no'        => 'required|numeric',
             'license_date'      => 'required',
-            'bank_id'           => 'required|numeric',
-            'iban'              => 'required|unique:offices',
+            'license_file'      => 'required|max:2000|mimes:pdf',
             'representative'    => 'required|min:6',
             'role'              => 'required',
-            'mobile'            => 'required:digits:10|unique:offices',
-            'phone'             => 'required|numeric',
-            'fax'               => 'numeric',
+            'mobile'            => 'required|digits:10|unique:offices',
             'email'             => 'required|email|unique:offices',
+            'bank_id'           => 'required|numeric',
+            'iban'              => 'required|unique:offices',
+            'bank_file'         => 'required|max:2000|mimes:pdf',
+            'phone'             => 'required|numeric',
+            'fax'               => 'required|numeric',
             'area_id'           => 'required|numeric',
             'city_id'           => 'required|numeric',
+            'street'            => 'required',
             'zip_code'          => 'required|numeric',
-            'logo'              => 'max:2000|mimes:jpeg,jpg,bmp,png',
-            'license_file'      => 'required|max:2000|mimes:pdf',
-            'bank_file'         => 'required|max:2000|mimes:pdf'
+            'logo'              => 'max:2000|mimes:gif,jpeg,jpg,bmp,png',
         ];
     }
 }

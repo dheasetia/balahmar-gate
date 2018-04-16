@@ -28,10 +28,10 @@ class HomeController extends Controller
         $office = Sentinel::getUser()->office;
 
         if ($user->inRole('admin')) {
-            return redirect('/admin');
+            return redirect(url('admin'));
         }
         if (count($user->office) == 0) {
-            return redirect('office/create');
+            return redirect(url('office/create'));
         }
         if($user->office->is_approved == 0) {
             Toastr::warning('الرجاء الانتظار حتى تحصل الجهة على الموافقة من مجلس الأمناء.', 'انتطار الموافقة');
