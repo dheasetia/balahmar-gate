@@ -27,7 +27,7 @@
             @if(count($errors) > 0)
                 <div class="alert alert-danger">
                     <ul>
-                        <h4>توجد أخطاز!! الرجاء تصحيح الأخطاء التالية: </h4>
+                        <h5>توجد أخطاز!! الرجاء تصحيح الأخطاء التالية: </h5>
                         @foreach($errors->all() as $error)
                             <li>
                                 {{$error}}
@@ -371,7 +371,7 @@
                                 </div>
                             @endif
                             <div class="clearfix margin-top-20">
-                                <span class="label label-success" style="font-family: DroidKufi; font-size: medium">تنبيه !</span> الرجاء اختيار الصورة بالمحاذاة المناسب وبحجم الملف لا يزيد عن ٢ ميغا.
+                                <span class="label label-success" style="font-family: DroidKufi; font-size: medium">تنبيه !</span> الرجاء اختيار الملف بصيغة الصورة (jpeg، bmp، png) بالمحاذاة المناسبة وبحجم الملف لا يزيد عن ٢ ميغا.
                             </div>
                         </div>
                     </div>
