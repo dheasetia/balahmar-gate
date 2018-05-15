@@ -377,7 +377,7 @@
                     </div>
 
                     <div class="form-group {{$errors->has('po_box') ? 'has-error' : ''}}">
-                        <label for="coordinate" class="control-label col-md-3">إحداثيات الموقع </label>
+                        <label for="coordinate" class="control-label col-md-3">إحداثيات الموقع <span class="required">*</span></label>
                         <div class="col-md-9">
                             <input dir="ltr" type="text" name="coordinate" class="form-control" id="coordinate" value="{{old('coordinate')}}" readonly/>
                             <span class="help-bock">لتحديد الموقع، اسحب المؤشر في الخريطة ثم ضعه في موقعك.</span>
