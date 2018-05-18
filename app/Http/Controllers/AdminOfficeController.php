@@ -243,5 +243,30 @@ class AdminOfficeController extends Controller
         return redirect(url('admin/offices'));
     }
 
+    public function suspend(Request $request)
+    {
+        $office = Office::findOrFail($request->office_id);
+        if ($office == null) {
+            Toastr::error('تعذرت عملية إيقاف المشاريع للجهة ', 'إيقاف مشاريع الجهة');
+            return redirect(url('admin/offices', $office->id));
+        }
+        $office->is_suspended = 1;
+        $office->save();
+        Toastr::success('تم إيقاف المشاريع للجهة ', 'إيقاف مشاريع الجهة');
+        return redirect(url('admin/offices', $office->id));
+    }
+
+    public function unsuspend(Request $request)
+    {
+        $office = Office::findOrFail($request->office_id);
+        if ($office == null) {
+            Toastr::error('تعذرت عملية إيقاف المشاريع للجهة ', 'إيقاف مشاريع الجهة');
+            return redirect(url('admin/offices', $office->id));
+        }
+        $office->is_suspended = 0;
+        $office->save();
+        Toastr::success('تمت إعادة فتح المشاريع للجهة ', 'إعادة فتح المشاريع');
+        return redirect(url('admin/offices', $office->id));
+    }
 
 }

@@ -155,6 +155,56 @@
     </div>
     <!-- END APPROVAL MODAL -->
 
+    <!-- BEGIN SUSPEND MODAL -->
+    <div id="suspend_modal" class="modal fade" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="{{url('/admin/offices/suspend')}}" method="post" accept-charset="utf-8" id="form_suspend">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title font-red-sunglo">إيقاف الجهة عن تقديم مشاريع</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>هل تريد إيقاف الجهة عن تقديم مشاريع؟</p>
+                        {{csrf_field()}}
+                        <input id="suspend_office_id" type="hidden" value="{{$office->id}}" name="office_id">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn default"><i class="fa fa-undo"></i> إلغاء</button>
+                        <button type="submit" class="btn green"><i class="fa fa-check"></i> موافق</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- END SUSPEND MODAL -->
+
+    <!-- BEGIN SUSPEND MODAL -->
+    <div id="unsuspend_modal" class="modal fade" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="{{url('/admin/offices/unsuspend')}}" method="post" accept-charset="utf-8" id="form_unsuspend">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        <h4 class="modal-title font-red-sunglo">إيقاف الجهة عن تقديم مشاريع</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>هل تريد إعادة استقبال المشاريع لهذه الجهة؟</p>
+                        {{csrf_field()}}
+                        <input id="unsuspend_office_id" type="hidden" value="{{$office->id}}" name="office_id">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn default"><i class="fa fa-undo"></i> إلغاء</button>
+                        <button type="submit" class="btn green"><i class="fa fa-check"></i> موافق</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- END SUSPEND MODAL -->
+
+
+
     <div class="portlet light">
         <div class="portlet-title">
             <div class="caption">
@@ -175,6 +225,13 @@
             </div>
         </div>
         <div class="portlet-body form">
+            @if($office->is_suspended == 1)
+                <div class="alert alert-danger">
+                    <h5> تم إيقاف هذه الجهة مؤقتا عن تقديم مشاريعها</h5>
+                    <p>يمكن إعادة فتح تقديم المشاريع بالضغط على زر "إعادة فتح المشاريع" في أسفل النموذج</p>
+                </div>
+            @endif
+
             @if($office->is_banned == 1)
             <div class="alert alert-danger">
                 <h5> تعتذر المؤسسة عن الموافقة على هذه الجهة، وذلك لأسباب:</h5>
@@ -510,6 +567,11 @@
                         <button type="button" data-toggle="modal" data-target="#approval_modal" class="btn green"> <i class="fa fa-check"></i> تعميد الجهة </button>
                     @else
                         <button type="button" data-toggle="modal" data-target="#unapproval_modal" class="btn purple-seance"><i class="fa fa-undo"></i> إلغاء تعميد الجهة </button>
+                    @endif
+                    @if($office->is_suspended == 0)
+                        <button type="button" data-toggle="modal" data-target="#suspend_modal" class="btn blue-ebonyclay"><i class="fa fa-times-circle-o"></i> إيقاف مشاريع </button>
+                    @else
+                        <button type="button" data-toggle="modal" data-target="#unsuspend_modal" class="btn blue-chambray"><i class="fa fa-check-circle"></i> إعادة فتح مشاريع </button>
                     @endif
 
                 </div>

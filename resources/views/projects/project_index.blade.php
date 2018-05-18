@@ -2,6 +2,12 @@
 
 @section('content')
     <div class="col-md-12">
+        @if($office->is_suspended == 1)
+            <div class="alert alert-danger">
+                <h5> تعتذر المؤسسة عن استقبال المشاريع لفترة محدودة </h5>
+                <p>يمكن للجهة تقديم مشاريعها لاحقا بإذن الله</p>
+            </div>
+        @endif
         <!-- BEGIN BORDERED TABLE PORTLET-->
         <div class="portlet light portlet-fit ">
             <div class="portlet-title">
@@ -11,7 +17,9 @@
                     <span class="caption-helper">قائمة المشاريع المقدمة</span>
                 </div>
                 <div class="actions">
+                    @if($office->is_suspended == 0)
                     <a href="{{url('/projects/create')}}" class="btn bt-default btn-circle btn-icon-only tooltips" data-original-title="تقديم مشروع جديد"><i class="fa fa-plus"></i></a>
+                    @endif
                 </div>
             </div>
             <div class="portlet-body">

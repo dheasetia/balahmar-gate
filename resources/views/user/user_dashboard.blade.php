@@ -65,6 +65,17 @@
             </div>
         </div>
     </div>
+    @if($office->is_suspended == 1)
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-danger">
+                    <h5> تعتذر المؤسسة عن استقبال المشاريع لفترة محدودة </h5>
+                    <p>يمكن للجهة تقديم مشاريعها لاحقا بإذن الله</p>
+                </div>
+            </div>
+        </div>
+
+    @endif
     <div class="row">
         <div class="col-md-12">
             <!-- Begin: life time stats -->
@@ -76,7 +87,9 @@
                         <span class="caption-helper">قائمة المشاريع</span>
                     </div>
                     <div class="actions">
+                        @if($office->is_suspended == 0)
                         <a href="{{url('projects/create')}}" class="btn btn-circle btn-icon-only btn-default tooltips" data-original-title="تقديم طلب مشروع"><i class="fa fa-plus"></i></a>
+                        @endif
                         <a href="{{url('projects')}}" class="btn btn-circle btn-icon-only btn-default tooltips" data-original-title="قائمة جميع المشاريع"><i class="fa fa-list"></i></a>
                     </div>
                 </div>
@@ -109,7 +122,7 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="4"><h4 class="text-center">لا يوجد</h4></td>
+                                    <td colspan="7"><h4 class="text-center">لا يوجد</h4></td>
                                 </tr>
                             @endif
                             </tbody>

@@ -10,7 +10,7 @@
                     <span class="caption-subject font-balahmar sbold">التقارير المرفوعة لجميع المشاريع</span>
                 </div>
                 <div class="actions">
-                    <a href="/reports/create" class="btn btn-default btn-icon-only btn-circle tooltips" data-original-title="إضافة طلب جديد"><i class="fa fa-plus"></i></a>
+                    <a href="{{url('reports/create')}}" class="btn btn-default btn-icon-only btn-circle tooltips" data-original-title="رفع تقرير جديد"><i class="fa fa-plus"></i></a>
                 </div>
             </div>
             <div class="portlet-body">

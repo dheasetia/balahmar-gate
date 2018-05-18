@@ -28,8 +28,9 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Sentinel::getUser()->projects;
+        $office = Sentinel::getUser()->office;
         $seq_num = 0;
-        return view('projects.project_index', compact('projects', 'seq_num'));
+        return view('projects.project_index', compact('projects', 'seq_num', 'office'));
     }
 
     public function create()
@@ -38,6 +39,9 @@ class ProjectController extends Controller
             return redirect(url('office'));
         }
 
+        if (Sentinel::getUser()->office->is_suspended == 1) {
+            return redirect(url('projects'));
+        }
         $kinds = Kind::all('id', 'name');
         $cities = City::all('id', 'name');
         return view('projects.project_create', compact('kinds', 'cities'));

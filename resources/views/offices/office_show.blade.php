@@ -78,6 +78,13 @@
             @else
                 @if($office->is_approved == 0)
                     <div class="note note-warning">لم تتم الموافقة على هذه الجهة وهي تحت الدراسة، سوف يأتيك الإشعار بالبريد الإلكتروني إذا تمت الموافقة.</div>
+                @else
+                    @if($office->is_suspended == 1)
+                        <div class="alert alert-danger">
+                            <h5> تعتذر المؤسسة عن استقبال المشاريع لفترة محدودة </h5>
+                            <p>يمكن للجهة تقديم مشاريعها لاحقا بإذن الله</p>
+                        </div>
+                    @endif
                 @endif
             @endif
             <!-- BEGIN FORM-->

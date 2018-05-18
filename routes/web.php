@@ -138,9 +138,12 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::get('/offices/unapproved', 'AdminOfficeController@getUnapprovedOffices');
     Route::get('/offices/banned', 'AdminOfficeController@getBannedOffices');
     Route::post('/offices/ban', 'AdminOfficeController@ban');
+    Route::post('/offices/suspend', 'AdminOfficeController@suspend');
+    Route::post('/offices/unsuspend', 'AdminOfficeController@unsuspend');
     Route::get('/offices/{id}', 'AdminOfficeController@show');
     Route::delete('/offices/{id}', 'AdminOfficeController@destroy');
     Route::get('/offices/{id}/projects', 'AdminOfficeController@projects');
+
     //my office
     Route::get('office', 'AdminOfficeController@showMyOffice');
     Route::get('office/edit', 'AdminOfficeController@editMyOffice');
