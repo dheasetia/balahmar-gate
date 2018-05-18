@@ -243,6 +243,13 @@ class AdminOfficeController extends Controller
         return redirect(url('admin/offices'));
     }
 
+    public function getSuspendedOffices()
+    {
+        $suspended_offices = Office::where('is_suspended', '=', 1)->get();
+        Helpers::setCurrentPage('admin-offices-suspended');
+        return view('admin.offices.admin_suspended_office_index', compact('suspended_offices'));
+    }
+
     public function suspend(Request $request)
     {
         $office = Office::findOrFail($request->office_id);

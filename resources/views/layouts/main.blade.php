@@ -386,7 +386,7 @@
                             <a href="{{url('/admin')}}"><i class="fa fa-home"></i>  الرئيسية<span class="arrow"></span></a>
                         </li>
 
-                        <li class="menu-dropdown classic-menu-dropdown {{Helpers::getCurrentPage() == 'admin-offices-index' | Helpers::getCurrentPage() == 'admin-offices-approved' | Helpers::getCurrentPage() == 'admin-offices-unapproved' | Helpers::getCurrentPage() == 'admin-offices-banned' ? 'active' : ''}}">
+                        <li class="menu-dropdown classic-menu-dropdown {{Helpers::getCurrentPage() == 'admin-offices-index' | Helpers::getCurrentPage() == 'admin-offices-approved' | Helpers::getCurrentPage() == 'admin-offices-unapproved' | Helpers::getCurrentPage() == 'admin-offices-banned' | Helpers::getCurrentPage() == 'admin-offices-suspended' ? 'active' : ''}}">
                             <a href="javascript:;"><i class="fa fa-bank"></i>  الجهات المستفيدة
                                 <span class="arrow"></span>
                             </a>
@@ -403,6 +403,10 @@
                                 <li class="{{Helpers::getCurrentPage() == 'admin-offices-banned' ? 'active' : ''}}">
                                     <a href="/admin/offices/banned" class="nav-link  "><i class="fa fa-ban"></i> الجهات تم الاعتذار عنها</a>
                                 </li>
+                                <li class="{{Helpers::getCurrentPage() == 'admin-offices-suspended' ? 'active' : ''}}">
+                                    <a href="/admin/offices/suspended" class="nav-link  "><i class="fa fa-stop"></i> الجهات تم إيقاف استقبال المشاريع منها</a>
+                                </li>
+
                             </ul>
                         </li>
 
