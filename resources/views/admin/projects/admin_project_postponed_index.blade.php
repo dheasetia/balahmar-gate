@@ -42,7 +42,7 @@
                 <div class="caption">
                     <i class="fa fa-wrench font-balahmar"></i>
                     <span class="caption-subject bold font-balahmar uppercase"> المشاريع</span>
-                    <span class="caption-helper">التي تم اعتمادها</span>
+                    <span class="caption-helper">المؤجلة</span>
                 </div>
             </div>
             <div class="portlet-body">
@@ -61,12 +61,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @if(count($approved_projects) == 0)
+                    @if(count($postponed_projects) == 0)
                         <tr>
                             <td colspan="9" class="text-center"><h4>لا توجد مشروع تم اعتماده</h4></td>
                         </tr>
                     @else
-                        @foreach($approved_projects as $project)
+                        @foreach($postponed_projects as $project)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td><a href="{{url('admin/projects', $project->id)}}" class="tooltips" data-original-title="تفاصيل المشروع">{{$project->name}}</a></td>

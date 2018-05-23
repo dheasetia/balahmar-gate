@@ -410,7 +410,7 @@
                             </ul>
                         </li>
 
-                        <li class="menu-dropdown classic-menu-dropdown {{Helpers::getCurrentPage() == 'admin-projects-index' | Helpers::getCurrentPage() == 'admin-projects-approved' | Helpers::getCurrentPage() == 'admin-projects-unapproved' | Helpers::getCurrentPage() == 'admin-projects-banned' ? 'active' : ''}}">
+                        <li class="menu-dropdown classic-menu-dropdown {{Helpers::getCurrentPage() == 'admin-projects-index' | Helpers::getCurrentPage() == 'admin-projects-approved' | Helpers::getCurrentPage() == 'admin-projects-unapproved' | Helpers::getCurrentPage() == 'admin-projects-banned' | Helpers::getCurrentPage() == 'admin-projects-postponed' | Helpers::getCurrentPage() == 'admin-projects-requested' ? 'active' : ''}}">
                             <a href="javascript:;"><i class="fa fa-wrench"></i>  المشاريع
                                 <span class="arrow"></span>
                             </a>
@@ -425,8 +425,15 @@
                                     <a href="/admin/projects/unapproved" class="nav-link  "><i class="fa fa-warning"></i> تحت انتطار الاعتماد</a>
                                 </li>
                                 <li class="{{Helpers::getCurrentPage() == 'admin-projects-banned' ? 'active' : ''}}">
-                                    <a href="/admin/projects/banned" class="nav-link  "><i class="fa fa-ban"></i> الجهات تم الاعتذار عنها</a>
+                                    <a href="/admin/projects/banned" class="nav-link  "><i class="fa fa-ban"></i> المشاريع تم الاعتذار عنها</a>
                                 </li>
+                                <li class="{{Helpers::getCurrentPage() == 'admin-projects-postponed' ? 'active' : ''}}">
+                                    <a href="/admin/projects/postponed" class="nav-link  "><i class="fa fa-clock-o"></i> المشاريع المؤجلة</a>
+                                </li>
+                                <li class="{{Helpers::getCurrentPage() == 'admin-projects-requested' ? 'active' : ''}}">
+                                    <a href="/admin/projects/requested" class="nav-link  "><i class="fa fa-shopping-cart"></i> المشاريع التي طلب منها طلبات</a>
+                                </li>
+
 
                             </ul>
                         </li>
@@ -458,6 +465,7 @@
 
                             </ul>
                         </li>
+
                     @endif
                 </ul>
             </div>

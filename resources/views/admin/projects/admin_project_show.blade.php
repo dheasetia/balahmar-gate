@@ -4,7 +4,7 @@
     <div class="modal fade" id="confirmation_approval_modal" tabindex="-1" role="basic" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form method="post" action="/admin/projects/approve">
+            <form method="post" action="{{url('admin/projects/approve')}}">
                 {{csrf_field()}}
                 <input type="hidden" name="project_id" value="{{$project->id}}">
                 <div class="modal-header">

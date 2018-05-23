@@ -220,6 +220,19 @@ class AdminProjectController extends Controller
         return view('admin.projects.admin_project_banned_index', compact('banned_projects'));
     }
 
+    public function getPostponedProjects()
+    {
+        $postponed_projects = Project::where('approval_status', 5)->get();
+        Helpers::setCurrentPage('admin-projects-postponed');
+        return view('admin.projects.admin_project_postponed_index', compact('postponed_projects'));
+    }
+    public function getRequestedProjects()
+    {
+        $requested_projects = Project::where('approval_status', 6)->get();
+        Helpers::setCurrentPage('admin-projects-requested');
+        return view('admin.projects.admin_project_requested_index', compact('requested_projects'));
+    }
+
     public function printUnapprovedProjects()
     {
         $unapproved_projects = Project::where('approval_status', 0)->get();

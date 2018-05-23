@@ -158,6 +158,8 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::get('/projects/unapproved', 'AdminProjectController@getUnapprovedProjects');
     Route::get('/projects/approved', 'AdminProjectController@getApprovedProjects');
     Route::get('/projects/banned', 'AdminProjectController@getBannedProjects');
+    Route::get('/projects/postponed', 'AdminProjectController@getPostPonedProjects');
+    Route::get('/projects/requested', 'AdminProjectController@getRequestedProjects');
     Route::get('/projects/{id}', 'AdminProjectController@show');
     Route::get('/projects/{id}/reports', 'AdminProjectController@report_index');
 

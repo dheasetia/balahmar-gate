@@ -74,6 +74,12 @@ class Project extends Model
             case '4':
                 $result = 'danger';
                 break;
+            case '5':
+                $result = 'danger';
+                break;
+            case '6':
+                $result = 'danger';
+                break;
 
             default:
                 $result = 'default';
@@ -100,6 +106,13 @@ class Project extends Model
             case '4':
                 $result = 'اكتفاء';
                 break;
+            case '5':
+                $result = 'مؤجل';
+                break;
+            case '6':
+                $result = 'طلب';
+                break;
+
             default:
                 $result = 'لا يعرف';
                 break;
