@@ -276,4 +276,10 @@ class AdminOfficeController extends Controller
         return redirect(url('admin/offices', $office->id));
     }
 
+    public function resume($id)
+    {
+        $office = Office::findOrFail($id);
+        return view('admin.offices.admin_office_resume', compact('office'));
+    }
+
 }

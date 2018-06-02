@@ -144,6 +144,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::get('/offices/{id}', 'AdminOfficeController@show');
     Route::delete('/offices/{id}', 'AdminOfficeController@destroy');
     Route::get('/offices/{id}/projects', 'AdminOfficeController@projects');
+    Route::get('/offices/{id}/resume', 'AdminOfficeController@resume');
 
     //my office
     Route::get('office', 'AdminOfficeController@showMyOffice');

@@ -214,6 +214,7 @@
             </div>
             <div class="actions">
                 <div class="actions">
+                    <a href="{{url('admin/offices', $office) . '/resume'}}" class="btn btn-icon-only btn-circle tooltips" data-original-title="طباعة ملخص الجهة"><i class="fa fa-file-pdf-o font-balahmar"></i></a>
                     <a href="{{url('admin/offices')}}" class="btn btn-icon-only btn-circle tooltips" data-original-title="جميع الجهات"><i class="fa fa-list font-balahmar"></i></a>
                     <a href="{{url('admin/offices/approved')}}" class="btn btn-icon-only btn-circle tooltips" data-original-title="الجهات المعتمدة"><i class="fa fa-gavel font-balahmar"></i></a>
                     <a href="{{url('admin/offices/unapproved')}}" class="btn btn-icon-only btn-circle tooltips" data-original-title="الجهات في انتظار الاعتماد"><i class="fa fa-warning font-balahmar"></i></a>
