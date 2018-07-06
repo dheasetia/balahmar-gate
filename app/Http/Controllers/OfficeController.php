@@ -137,8 +137,6 @@ class OfficeController extends Controller
             return redirect('/office/create');
         }
         return view('offices.office_show', compact('office'));
-
-
     }
 
     public function edit()

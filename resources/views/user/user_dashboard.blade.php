@@ -59,7 +59,7 @@
                     <i class="fa fa-send fa-icon-medium"></i>
                 </div>
                 <div class="details">
-                    <div class="number"> 0 </div>
+                    <div class="number"> {{number_format($total_received)}} </div>
                     <div class="desc"> المبلغ المحول (ريال سعودي)</div>
                 </div>
             </div>

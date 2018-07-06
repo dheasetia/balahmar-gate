@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Office;
 use App\Project;
+use App\Receipt;
 use Brian2694\Toastr\Facades\Toastr;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Http\Request;
@@ -39,9 +40,21 @@ class HomeController extends Controller
         }
         $total_projects = count($user->projects);
         $projects = $user->projects;
+        $total_received = 0;
+        if (count($projects) > 0) {
+            foreach ($projects as $project) {
+                $receipts = Receipt::where('project_id', '=', $project->id)->get();
+                if (count($receipts) > 0) {
+                    foreach ($receipts as $receipt) {
+                        $total_received += $receipt->amount;
+                    }
+                }
+            }
+        }
+
         $total_donation = Project::where('office_id', $office->id)->get()->sum('donation_approved');
         $seq_num = 0;
-        return view('user.user_dashboard', compact('total_projects', 'projects', 'seq_num', 'office', 'total_donation'));
+        return view('user.user_dashboard', compact('total_projects', 'projects', 'seq_num', 'office', 'total_donation', 'total_received'));
     }
 
 }
