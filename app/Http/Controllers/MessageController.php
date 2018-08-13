@@ -11,6 +11,7 @@ use App\MessageRecipient;
 use Brian2694\Toastr\Facades\Toastr;
 use Cartalyst\Sentinel\Users\EloquentUser;
 use App\Group;
+use Illuminate\Support\Facades\DB;
 
 class MessageController extends Controller
 {
@@ -23,9 +24,9 @@ class MessageController extends Controller
     }
 
     public function index(){
-        $outbox = Message::where('creator_id', Sentinel::getUser()->id)->where('is_draft', 0)->get();
-        $inbox = Sentinel::getUser()->messages;
-        $drafts = Message::where('is_draft', 1)->get();
+        $inbox = Sentinel::getUser()->messages->sortByDesc('id');
+        $outbox = Message::where('creator_id', Sentinel::getUser()->id)->where('is_draft', 0)->get()->sortByDesc('id');
+        $drafts = Message::where('is_draft', 1)->get()->sortByDesc('id');
         return view('messages.message_index', compact('inbox', 'outbox', 'drafts'));
     }
 

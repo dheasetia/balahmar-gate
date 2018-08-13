@@ -228,7 +228,7 @@
             <!-- BEGIN LOGO -->
             <div class="head-logo pull-left">
                 <a href="{{url('/')}}">
-                    <img src="{{asset('assets/layouts/layout3/img/logo_balahmar.png')}}" alt="logo" class="logo-default">
+                    <img src="{{asset('assets/layouts/layout3/img/logo_header.png')}}" alt="logo" class="logo-default">
                 </a>
             </div>
             <!-- BEGIN RESPONSIVE MENU TOGGLER -->

@@ -73,4 +73,16 @@ class Helpers {
         return '';
     }
 
+    public static function getTotalDonationGivenToOffice($office_id)
+    {
+        $total_given = 0;
+        $projects = Project::where('office_id', '=', $office_id)->where('donation_approved', '<>', 0)->get();
+        if (count($projects) > 0) {
+            foreach ($projects as $project) {
+                $total_given += $project->donation_approved;
+            }
+        }
+        return $total_given;
+    }
+
 }

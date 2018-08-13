@@ -145,6 +145,7 @@
                         <th> المدينة </th>
                         <th> تاريخ التنفيذ </th>
                         <th>الحالة</th>
+                        <th>مبلغ الاعتماد</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -162,6 +163,7 @@
                                 <td>{{$project->city->name}}</td>
                                 <td>{{$project->hijri_execution_day . '/ ' . $project->hijri_execution_month . '/ ' . $project->hijri_execution_year}} </td>
                                 <td>{{$project->status}}</td>
+                                <td>{{$project->donation_approved == 0 ? '---' : number_format($project->donation_approved)}}</td>
                             </tr>
                         @endforeach
                     @endif

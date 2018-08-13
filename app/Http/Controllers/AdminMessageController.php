@@ -23,9 +23,9 @@ class AdminMessageController extends Controller
 
     public function index()
     {
-        $outbox = Message::where('creator_id', Sentinel::getUser()->id)->where('is_draft', 0)->get();
-        $inbox = Sentinel::getUser()->messages;
-        $drafts = Message::where('is_draft', 1)->get();
+        $inbox = Sentinel::getUser()->messages->sortByDesc('id');
+        $outbox = Message::where('creator_id', Sentinel::getUser()->id)->where('is_draft', 0)->get()->sortByDesc('id');
+        $drafts = Message::where('is_draft', 1)->get()->sortByDesc('id');
         return view('admin.messages.admin_message_index', compact('inbox', 'outbox', 'drafts'));
     }
 

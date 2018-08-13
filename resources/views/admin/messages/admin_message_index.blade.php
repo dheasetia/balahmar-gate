@@ -128,3 +128,13 @@
     </div>
 </div>
 @endsection
+
+@section('page_scripts')
+    <script>
+        $(document).ready(function () {
+            $("#inbox").scrollTop(function() {
+                return this.scrollHeight;
+            });
+        });
+    </script>
+@endsection

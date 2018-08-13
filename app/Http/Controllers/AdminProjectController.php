@@ -96,7 +96,6 @@ class AdminProjectController extends Controller
             $project->hijri_approval_month = $array_hijri[1];
             $project->hijri_approval_year = $array_hijri[2];
 
-            $project->donation_purpose = null;
             $project->pending_reason = null;
             $project->requested_detail = null;
             $project->other_project_donated_id = null;
